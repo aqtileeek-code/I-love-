@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кешірім сұрау</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #fbcbc9; /* Розовый фон как на видео */
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.5rem;
+            color: #555;
+            margin-bottom: 40px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 30px;
+            position: relative;
+            width: 300px;
+            justify-content: center;
+        }
+
+        button {
+            padding: 15px 35px;
+            font-size: 1.5rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            color: white;
+            font-weight: bold;
+            transition: all 0.2s ease;
+        }
+
+        #yesBtn {
+            background-color: #28a745; /* Зеленая кнопка */
+        }
+
+        #noBtn {
+            background-color: #dc3545; /* Красная кнопка */
+            position: absolute;
+        }
+
+        .heart {
+            color: #dc3545;
+            font-size: 2rem;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="mainCard">
+        <h1>Жаным кешірші мені</h1>
+      
+        <p>кешіресің ба?</p>
+        <div class="buttons">
+            <button id="yesBtn">Ия</button>
+            <button id="noBtn" style="left: 160px;">Жоқ</button>
+        </div>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const mainCard = document.getElementById('mainCard');
+
+        // Функция, которая двигает кнопку "Жоқ" в случайное место
+        function moveButton() {
+            // Вычисляем случайные координаты внутри экрана
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+            
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+        }
+
+        // Срабатывает при наведении мыши (для ПК)
+        noBtn.addEventListener('mouseover', moveButton);
+        
+        // Срабатывает при касании (для мобильных телефонов)
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault(); // Отменяет стандартное нажатие
+            moveButton();
+        });
+
+        // Что происходит при нажатии на "Ия"
+        yesBtn.addEventListener('click', () => {
+            mainCard.innerHTML = `
+                <h1>Рахмет алтыным <span class="heart">❤️</span></h1>
+            `;
+        });
+    </script>
+
+</body>
+</html>
